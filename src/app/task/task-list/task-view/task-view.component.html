@@ -1,0 +1,14 @@
+<div class="flex items-center justify-center bg-gray-300 w-96 mb-2 px-2 py-4 rounded-md">
+  <div class="flex-1">
+    <span class="font-semibold">{{taskVM().title}}</span>
+    <p class="text-gray-600">{{taskVM().description}}</p>
+  </div>
+  <div class="ml-4 ">
+    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            (click)="onUpdateTaskHandle()">Edit</button>
+    <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2"
+            (click)="onDeleteTaskHandle()">Delete</button>
+  </div>
+</div>
+
+

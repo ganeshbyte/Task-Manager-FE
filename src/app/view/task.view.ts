@@ -1,16 +1,21 @@
+import {TaskHttp} from "../http/task.http";
+
 export class TaskVM{
   id : string;
   title: string;
   description: string;
+  isEditMode: boolean;
 
-  httpToView(http : TaskVM){
+  static httpToView(http : TaskHttp){
+       let vm = new TaskVM();
        if(!http){
          return;
        }
-       const vm = new TaskVM();
-       vm.id = http.id;
-       vm.title = http.title;
-       vm.description = http.description;
+       vm.id = http?.id;
+       vm.title = http?.title;
+       vm.description = http?.description;
+       vm.isEditMode = false;
+       console.log(vm);
        return vm;
   }
 }

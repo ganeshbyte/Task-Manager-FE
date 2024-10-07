@@ -1,0 +1,19 @@
+<div>
+  <app-task-form (onAddingTask)="onAddTask($event)"></app-task-form>
+</div>
+<div class="max-w-xl mx-auto p-4 bg-white rounded-lg shadow-md ">
+  <div class="text-lg font-bold mb-4">Tasks</div>
+  <div class="h-96 overflow-y-auto">
+    @for(task of tasks(); track task.id; let index = $index) {
+      @if(task.isEditMode){
+           <app-task-form [taskVM]="task" (onUpdateTask)="onUpdateTask($event, index)"></app-task-form>
+      } @else{
+        <div class="flex justify-between items-center p-3 border-b">
+           <app-task-view [taskVM]="task" (onUpdateTask)="onUpdateTaskHandle(index)" (onDeleteTask)="onDeleteTask(task.id, index)"></app-task-view>
+        </div>
+      }
+    } @empty {
+      <div class="p-3 text-gray-600">Task Not Added Yet</div>
+    }
+  </div>
+</div>

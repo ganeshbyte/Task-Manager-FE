@@ -1,16 +1,18 @@
 import {Component, OnInit, signal} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {TaskForm} from "../form/task.form";
-import {TaskFormComponent} from "./task-form/task-form.component";
+import {TaskFormComponent} from "./task-list/task-form/task-form.component";
 import {TaskVM} from "../view/task.view";
 import {TaskService} from "../service/task.service";
+import {TaskListComponent} from "./task-list/task-list.component";
+import {TaskHttp} from "../http/task.http";
 
 @Component({
   selector: 'app-task',
   standalone: true,
   imports: [
-    TaskFormComponent
+    TaskFormComponent,
+    TaskListComponent
   ],
+  providers: [TaskService],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
@@ -26,9 +28,7 @@ export class TaskComponent implements  OnInit{
   getTasks(){
      this.taskService.getAllTasks().subscribe(
        {
-         complete(): void {
-         },
-         next: (res :TaskVM[]) => {
+         next: (res ) => {
            if(!res){
              return;
            }
@@ -38,7 +38,14 @@ export class TaskComponent implements  OnInit{
            console.log(err);
          }
        }
-
      )
+  }
+
+  Run() {
+    console.log("I am Running")
+  }
+
+  Run2() {
+    console.log("I am Running Also")
   }
 }

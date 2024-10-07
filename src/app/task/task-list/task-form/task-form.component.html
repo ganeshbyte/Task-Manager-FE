@@ -1,0 +1,39 @@
+<div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md ring-1 ring-gray-400 mt-10 mb-10">
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <div class="flex justify-center items-center">
+      <div>
+        <div>
+          <input
+            type="text"
+            placeholder="Title"
+            formControlName="title"
+            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+          >
+          @if((this.taskForm?.controls?.title?.dirty) && this.taskForm.controls.title.invalid){
+            <div class="text-red-700">Title is Required Field</div>
+          }
+        </div>
+        <div class="mt-3">
+          <input
+            type="text"
+            placeholder="Description"
+            formControlName="description"
+            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+          >
+          @if((this.taskForm?.controls?.description?.dirty) && this.taskForm.controls.description.invalid){
+            <div class="text-red-700">Description is Required Field</div>
+          }
+        </div>
+      </div>
+
+      <div class="ml-10">
+        <button
+          type="submit"
+          class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+        >
+          {{ isEditMode() ? 'Update Task' :  'Add Task' }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

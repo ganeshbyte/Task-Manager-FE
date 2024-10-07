@@ -1,4 +1,4 @@
-import {FormControl} from "@angular/forms";
+import {FormControl, Validators} from "@angular/forms";
 import {TaskVM} from "../view/task.view";
 import {TaskPayload} from "../payload/task.payload";
 
@@ -9,9 +9,9 @@ interface ITaskForm{
 }
 
 export class TaskForm implements ITaskForm{
-  id = new FormControl();
-  title = new FormControl();
-  description = new FormControl();
+  id = new FormControl(null);
+  title = new FormControl(null, [Validators.required]);
+  description = new FormControl(null, [Validators.required]);
 }
 
 export class TaskFormData implements ITaskForm{
@@ -19,7 +19,7 @@ export class TaskFormData implements ITaskForm{
   title : string;
   description : string;
 
-  viewToForm(taskVM: TaskVM){
+  static viewToForm(taskVM: TaskVM){
       const taskFormData = new TaskFormData();
       taskFormData.id = taskVM.id;
       taskFormData.title = taskVM.title;
@@ -27,7 +27,7 @@ export class TaskFormData implements ITaskForm{
       return taskFormData;
   }
 
-  formToPayload(formData: TaskFormData){
+  static formToPayload(formData: TaskFormData){
         const formPayload = new TaskPayload();
         formPayload.title = formData.title;
         formPayload.description = formData.description;
